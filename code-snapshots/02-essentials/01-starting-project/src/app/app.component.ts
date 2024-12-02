@@ -13,11 +13,15 @@ import { DUMMY_USERS } from './dummy-users';
 })
 export class AppComponent {
   users = DUMMY_USERS;
-  selectedUser: string | undefined = ''
+  selectedUserId?: string;
+
+  get selectedUser() {
+    return this.users.find((user) => user.id === this.selectedUserId);
+  }
 
   onSelectUser(id: string) {
     console.log('Selected user with id ' + id);
-    this.selectedUser = DUMMY_USERS.find((e) => e.id == id)?.name
+    this.selectedUserId = id;
   }
 
 }
